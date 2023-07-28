@@ -6,7 +6,7 @@
 /*   By: dagabrie <dagabrie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/27 16:08:21 by dagabrie          #+#    #+#             */
-/*   Updated: 2023/07/27 17:40:51 by dagabrie         ###   ########.fr       */
+/*   Updated: 2023/07/28 17:47:29 by dagabrie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ typedef struct	s_data {
 int	main(void)
 {
 
-#if 0
+#if 1
 	void	*mlx;
 	void	*mlx_win;
 
