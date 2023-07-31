@@ -13,7 +13,7 @@
 NAME	=	so_long
 
 CC		=	cc
-CFLAGS	=	-Wall -Werror -Wextra -Imlx_linux -g -fsanitize=address
+CFLAGS	=	#-Wall -Werror -Wextra -Imlx_linux -g -fsanitize=address
 
 LIBS	=	-L ../mlx_linux -lmlx -lXext -lX11
 
