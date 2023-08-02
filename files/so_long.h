@@ -18,12 +18,26 @@
 # include <unistd.h>
 # include "libft/libft.h"
 # include "gnl/gnl.h"
+# define NO_TEXTURES "textures/no_texture.xpm"
+# define START "textures/test.xpm"
 
-typedef struct s_img
+typedef struct s_map
 {
-	void	*player;
-	void	*wall;
-	void	*floor;
-}			t_img;
+	void	*ok;
+	char 	**map;
+	int 	num_lines;
+
+}			t_map;
+
+typedef struct s_wind
+{
+	int		x;
+	int		y;
+	void	*mlx;
+	void	*mlx_win;
+	void	*img;
+
+}			t_wind;
+
 
 #endif
