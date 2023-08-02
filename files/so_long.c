@@ -53,6 +53,8 @@ int	main(int argc, char **argv)
 	mlx = mlx_init();
 	mlx_win = mlx_new_window(mlx, 64*lon, 500, "SO_LONG");
 	img = mlx_xpm_file_to_image(mlx, "textures/no_texture.xpm", &x, &y);
+	
+	//teste para pintar a primeira linha do mapa
 	printf("%d\n",lon);
 	while(j++ <= lon)
 	{
