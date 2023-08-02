@@ -11,78 +11,62 @@
 /* ************************************************************************** */
 
 #include "so_long.h"
-#if 1
 
 //guarda o mapa numa matriz
-void **map_to_arrey(int fd,char **map)
-{
-	printf("in\n");
-	int i = 0;
-	int j = 0;
-	char *line;
-	while(*line != NULL) // erro nesta linha
-	{
-		i = 0;
-		*line = (get_next_line(fd),1);
-		while (line[i])
+void map_to_array(int fd, int *num_lines, char ***map) {
+    *num_lines = 0;
+    *map = NULL;
+    int j = 0;
+
+    while (1) {
+        char *line = get_next_line(fd);
+        if (line == NULL)
 		{
-			*map[j] = *line;
-			printf("%c\n",line[i]);
-			i++;
-		}
-		
-		j++;
-	}
-		printf("out\n");
+            break; // Chegamos ao final do arquivo.
+        }
+        // Aloca memória para a linha e copia o conteúdo da próxima linha para o mapa.
+        *map = (char**)realloc(*map, (j + 1) * sizeof(char*));
+        (*map)[j] = (char*)malloc((ft_strlen(line) + 1) * sizeof(char));
+        ft_strlcpy((*map)[j], line,ft_strlen(line));
+
+        j++;
+    }
+    *num_lines = j;
+}
+
+//printa a matriz
+void paint_map(char **map, int num_lines) {
+    for (int i = 0; i < num_lines; i++) {
+        printf("%s\n", map[i]);
+    }
+}
+
+
+void create_windo(int x, int y, void **mlx,void	**mlx_win, void **img)
+{
+
+	mlx = mlx_init();
+	mlx_win = mlx_new_window(mlx, 64*x, 64*y, "SO_LONG");
+	img = mlx_xpm_file_to_image(mlx, "textures/no_texture.xpm", &x, &y);
+
 }
 
 int	main(int argc, char **argv)
 {
-	char 	**map;
+	char 	**map = NULL;
 	void	*mlx;
 	void	*mlx_win;
 	void	*img;
-	int		x = 0;
-	int		y;
-	int 	j = 0;
-	int 	fd = open(argv[1] ,O_RDWR);
-	int 	lon = ft_strlen(get_next_line(fd));
+	int 	num_lines;
+
+
+	map_to_array(open(argv[1] ,O_RDWR) , &num_lines, &map);
+	paint_map(map, num_lines);
 	
-	map_to_arrey(fd , map);
+	create_windo(ft_strlen(map[0]),num_lines, &mlx, &mlx_win, &img);
 
-	mlx = mlx_init();
-	mlx_win = mlx_new_window(mlx, 64*lon, 500, "SO_LONG");
-	img = mlx_xpm_file_to_image(mlx, "textures/no_texture.xpm", &x, &y);
-	
-	//teste para pintar a primeira linha do mapa
-	printf("%d\n",lon);
-	while(j++ <= lon)
-	{
-		printf("okfffff\n");
-		mlx_put_image_to_window(mlx, mlx_win, img, x, 0);
-		x = x + 64;
-	}
-	mlx_loop(mlx);
-
-}
-#else
-int	main(void)
-{
-	void	*mlx;
-	void	*mlx_win;
-	void	*img;
-	int		x;
-	int		y;
-
-	mlx = mlx_init();
-	mlx_win = mlx_new_window(mlx, 500, 500, "SO_LONG");
-	img = mlx_xpm_file_to_image(mlx, "textures/no_texture.xpm", &x, &y);
-	mlx_put_image_to_window(mlx, mlx_win, img, 0, 64);
-	mlx_put_image_to_window(mlx, mlx_win, img, 64, 64);
-	mlx_put_image_to_window(mlx, mlx_win, img, 128, 64);
 	mlx_put_image_to_window(mlx, mlx_win, img, 0, 0);
-	mlx_put_image_to_window(mlx, mlx_win, img, 64, 0);
-	mlx_put_image_to_window(mlx, mlx_win, img, 128, 0);
+
 	mlx_loop(mlx);
+
 }
-#endif
