@@ -1,98 +1,96 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   get_next_line_utils.c                              :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: dagabrie <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/05/13 18:19:39 by dagabrie          #+#    #+#             */
+/*   Updated: 2022/05/13 18:19:39 by dagabrie         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "gnl.h"
 
-size_t	ft_strlen_gnl(const char *str)
+/* Procura \n na lista fornecida. */
+int	found_newline(t_list *stash)
 {
-	size_t	i;
-	char	*cp;
+	int		i;
+	t_list	*current;
 
-	i = 0;
-	cp = (char *)(str);
-	while (cp && *cp)
-	{
-		cp++;
-		i++;
-	}
-	return (i);
-}
-
-void	*ft_memcpy(void *dest, const void *src, size_t n)
-{
-	size_t	i;
-
-	if (!src && !dest)
+	if (stash == NULL)
 		return (0);
+	current = ft_lst_get_last(stash);
 	i = 0;
-	while (i < n)
+	while (current->content[i])
 	{
-		((char *)dest)[i] = ((const char *)src)[i];
+		if (current->content[i] == '\n')
+			return (1);
 		i++;
 	}
-	return (dest);
+	return (0);
 }
 
-char	*ft_strjoin(const char *s1, const char *s2)
+//* Retorna um ponteiro para o último node no stash */
+t_list	*ft_lst_get_last(t_list *stash)
 {
-	size_t	i;
-	size_t	s1len;
-	size_t	s2len;
-	char	*ptr;
+	t_list	*current;
 
-	i = 0;
-	ptr = NULL;
-	if (!s1 && !s2)
-		return (NULL);
-	if (s1 && !s2)
-		return (ft_strdup_gnl(s1));
-	else if (!s1 && s2)
-		return (ft_strdup_gnl(s2));
-	s1len = ft_strlen_gnl(s1);
-	s2len = ft_strlen_gnl(s2);
-	ptr = (char *)malloc(sizeof(char) * (s1len + s2len + 1));
-	if (!ptr)
-		return (NULL);
-	while (i < (s1len + s2len + 1))
-		ptr[i++] = 0;
-	ft_memcpy(ptr, s1, s1len);
-	ft_memcpy(ptr + s1len, s2, s2len);
-	ptr[s1len + s2len] = '\0';
-	return (ptr);
+	current = stash;
+	while (current && current->next)
+		current = current->next;
+	return (current);
 }
 
-char	*ft_strdup_gnl(const char *s)
+/* Calcula o número de caracteres na linha atual, incluindo o final
+ * '\n' se houver, e aloca memória de acordo. */
+void	generate_line(char **line, t_list *stash)
 {
-	char	*str;
-	int		len;
+	int	i;
+	int	len;
 
-	if (s)
+	len = 0;
+	while (stash)
 	{
-		len = ft_strlen_gnl(s);
-		if (!len)
-			return (NULL);
-		str = (char *)malloc(sizeof(char) * (len + 1));
-		if (!str)
-			return (NULL);
-		ft_memcpy(str, s, len);
-		*(str + len) = '\0';
-		return (str);
-	}
-	return (NULL);
-}
-
-char	*ft_strchr(const char *s, int c)
-{
-	char	*tmp;
-
-	if (s)
-	{
-		tmp = (char *)(s);
-		while (*tmp)
+		i = 0;
+		while (stash->content[i])
 		{
-			if (*tmp == (char)c)
-				return (tmp);
-			tmp++;
+			if (stash->content[i] == '\n')
+			{
+				len++;
+				break ;
+			}
+			len++;
+			i++;
 		}
-		if (*tmp == c)
-			return (tmp);
+		stash = stash->next;
 	}
-	return (NULL);
+	*line = malloc(sizeof(char) * (len + 1));
+}
+
+/* Frees stash. */
+void	free_stash(t_list *stash)
+{
+	t_list	*current;
+	t_list	*next;
+
+	current = stash;
+	while (current)
+	{
+		free(current->content);
+		next = current->next;
+		free(current);
+		current = next;
+	}
+}
+
+/* Conta uma string */
+size_t	gnl_strlen(const char *string)
+{
+	size_t	count;
+
+	count = 0;
+	while (string[count])
+		count++;
+	return (count);
 }

@@ -11,11 +11,61 @@
 /* ************************************************************************** */
 
 #include "so_long.h"
+#if 1
 
+//guarda o mapa numa matriz
+void **map_to_arrey(int fd,char **map)
+{
+	printf("in\n");
+	int i = 0;
+	int j = 0;
+	char *line;
+	while(*line != NULL) // erro nesta linha
+	{
+		i = 0;
+		*line = (get_next_line(fd),1);
+		while (line[i])
+		{
+			*map[j] = *line;
+			printf("%c\n",line[i]);
+			i++;
+		}
+		
+		j++;
+	}
+		printf("out\n");
+}
+
+int	main(int argc, char **argv)
+{
+	char 	**map;
+	void	*mlx;
+	void	*mlx_win;
+	void	*img;
+	int		x = 0;
+	int		y;
+	int 	j = 0;
+	int 	fd = open(argv[1] ,O_RDWR);
+	int 	lon = ft_strlen(get_next_line(fd));
+	
+	map_to_arrey(fd , map);
+
+	mlx = mlx_init();
+	mlx_win = mlx_new_window(mlx, 64*lon, 500, "SO_LONG");
+	img = mlx_xpm_file_to_image(mlx, "textures/no_texture.xpm", &x, &y);
+	printf("%d\n",lon);
+	while(j++ <= lon)
+	{
+		printf("okfffff\n");
+		mlx_put_image_to_window(mlx, mlx_win, img, x, 0);
+		x = x + 64;
+	}
+	mlx_loop(mlx);
+
+}
+#else
 int	main(void)
 {
-
-#if 1
 	void	*mlx;
 	void	*mlx_win;
 	void	*img;
@@ -24,19 +74,13 @@ int	main(void)
 
 	mlx = mlx_init();
 	mlx_win = mlx_new_window(mlx, 500, 500, "SO_LONG");
-	img = mlx_xpm_file_to_image(mlx, "textures/door_closed.xpm", &x, &y);
+	img = mlx_xpm_file_to_image(mlx, "textures/no_texture.xpm", &x, &y);
+	mlx_put_image_to_window(mlx, mlx_win, img, 0, 64);
+	mlx_put_image_to_window(mlx, mlx_win, img, 64, 64);
+	mlx_put_image_to_window(mlx, mlx_win, img, 128, 64);
 	mlx_put_image_to_window(mlx, mlx_win, img, 0, 0);
+	mlx_put_image_to_window(mlx, mlx_win, img, 64, 0);
+	mlx_put_image_to_window(mlx, mlx_win, img, 128, 0);
 	mlx_loop(mlx);
-#else
-	void	*mlx;
-	void	*mlx_win;
-	t_data	img;
-
-	mlx = mlx_init();
-	mlx_win = mlx_new_window(mlx, 1920, 1080, "Hello world!");
-	img.img = mlx_new_image(mlx, 1920, 1080);
-	img.addr = mlx_get_data_addr(img.img, &img.bits_per_pixel, &img.line_length, &img.endian);
-	mlx_put_image_to_window(mlx, mlx_win, img.img, 0, 0);
-	mlx_loop(mlx);
-#endif
 }
+#endif

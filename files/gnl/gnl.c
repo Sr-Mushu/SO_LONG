@@ -1,100 +1,161 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   get_next_line.c                                    :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: dagabrie <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/05/13 18:19:46 by dagabrie          #+#    #+#             */
+/*   Updated: 2022/05/13 18:19:46 by dagabrie         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "gnl.h"
 
-static char	*verif_buffer(char **storage, char **buffer, size_t buffer_len)
-{
-	char	*ret;
-	char	*tmp;
-	size_t	i;
-
-	i = ft_strlen_gnl(*storage);
-	ret = (char *)malloc(sizeof(char) * (buffer_len + i + 1));
-	if (!ret)
-		return (NULL);
-	ft_memcpy(ret, *storage, i);
-	ft_memcpy(ret + i, *buffer, buffer_len);
-	ret[i + buffer_len] = '\0';
-	tmp = ft_strdup_gnl((*buffer) + buffer_len);
-	if (*storage)
-		free (*storage);
-	(*storage) = tmp;
-	return (ret);
-}
-
-static char	*put_storage(char **storage, char **buffer, size_t i)
-{
-	char	*tmp;
-	char	*ret;
-
-	ret = NULL;
-	if (i <= 0)
-	{
-		if (i == 0 && *storage)
-		{
-			ret = (*storage);
-			*storage = NULL;
-		}
-		return (ret);
-	}
-	(*buffer)[i] = '\0';
-	tmp = ft_strchr(*buffer, '\n');
-	if (tmp)
-		ret = verif_buffer(storage, buffer, (tmp - *buffer) + 1);
-	else
-	{
-		tmp = ft_strjoin(*storage, *buffer);
-		if (*storage)
-			free (*storage);
-		*storage = tmp;
-	}
-	return (ret);
-}
-
-static char	*verif_storage(char **storage, int size)
-{
-	char	*tmp;
-	char	*ret;
-	int		i;
-
-	if (size < 0)
-		return (NULL);
-	ret = (char *)malloc(sizeof(char) * size + 1);
-	if (!ret)
-		return (NULL);
-	i = -1;
-	while (++i != size)
-		ret[i] = (*storage)[i];
-	ret[i] = '\0';
-	tmp = ft_strdup_gnl(*storage + i);
-	free (*storage);
-	(*storage) = tmp;
-	return (ret);
-}
-
+/*
+* 1. lê fd e adicione à linked list
+* read_and_stash(fd, &stash);
+*********
+* 2. extrair do stash para a linha
+* extract_line(stash, &line);
+*********
+* 3. clean stash
+* clean_stash(&stash);
+*/
 char	*get_next_line(int fd)
 {
-	static char	*storage;
-	char		*buffer;
-	char		*ret;
-	size_t		i;
+	static t_list	*stash = NULL;
+	char			*line;
 
-	if ((read(fd, 0, 0) == -1) || (fd < 0 || fd > 1024) || BUFFER_SIZE <= 0)
-		return (0);
-	i = 1;
-	ret = NULL;
-	buffer = ft_strchr(storage, '\n');
-	if (!buffer)
+	if (fd < 0 || BUFFER_SIZE <= 0 || read(fd, &line, 0) < 0)
+		return (NULL);
+	line = NULL;
+	read_and_stash(fd, &stash);
+	if (stash == NULL)
+		return (NULL);
+	extract_line(stash, &line);
+	clean_stash(&stash);
+	if (line[0] == '\0')
 	{
-		buffer = (char *)malloc(sizeof(char) * (BUFFER_SIZE + 1));
-		if (!buffer)
-			return (0);
-		while (ret == NULL && i > 0)
-		{
-			i = read(fd, buffer, BUFFER_SIZE);
-			ret = put_storage(&storage, &buffer, i);
-		}
-		free (buffer);
-		return (ret);
+		free_stash(stash);
+		stash = NULL;
+		free(line);
+		return (NULL);
 	}
-	ret = verif_storage(&storage, (buffer - storage) + 1);
-	return (ret);
+	return (line);
+}
+
+/* Usa read() para adicionar caracteres ao stash */
+void	read_and_stash(int fd, t_list **stash)
+{
+	char	*buf;
+	int		readed;
+
+	readed = 1;
+	while (!found_newline(*stash) && readed != 0)
+	{
+		buf = malloc(sizeof(char) * (BUFFER_SIZE + 1));
+		if (buf == NULL)
+			return ;
+		readed = (int)read(fd, buf, BUFFER_SIZE);
+		if ((*stash == NULL && readed == 0) || readed == -1)
+		{
+			free(buf);
+			return ;
+		}
+		buf[readed] = '\0';
+		add_to_stash(stash, buf, readed);
+		free(buf);
+	}
+}
+
+/* Adiciona o conteúdo do buffer ao final stash */
+void	add_to_stash(t_list **stash, char *buf, int readed)
+{
+	int		i;
+	t_list	*last;
+	t_list	*new_node;
+
+	new_node = malloc(sizeof(t_list));
+	if (new_node == NULL)
+		return ;
+	new_node->next = NULL;
+	new_node->content = malloc(sizeof(char) * (readed + 1));
+	if (new_node->content == NULL)
+		return ;
+	i = 0;
+	while (buf[i] && i < readed)
+	{
+		new_node->content[i] = buf[i];
+		i++;
+	}
+	new_node->content[i] = '\0';
+	if (*stash == NULL)
+	{
+		*stash = new_node;
+		return ;
+	}
+	last = ft_lst_get_last(*stash);
+	last->next = new_node;
+}
+
+/* Extrai todos os caracteres do nosso stash e os armazena na linha externa.
+ * parando após o primeiro \n que encontrar */
+void	extract_line(t_list *stash, char **line)
+{
+	int	i;
+	int	j;
+
+	if (stash == NULL)
+		return ;
+	generate_line(line, stash);
+	if (*line == NULL)
+		return ;
+	j = 0;
+	while (stash)
+	{
+		i = 0;
+		while (stash->content[i])
+		{
+			if (stash->content[i] == '\n')
+			{
+				(*line)[j++] = stash->content[i];
+				break ;
+			}
+			(*line)[j++] = stash->content[i++];
+		}
+		stash = stash->next;
+	}
+	(*line)[j] = '\0';
+}
+
+/* Esta função limpa o stash para que apenas os caracteres que não tenham
+ * sido retornado no final de get_next_line. */
+void	clean_stash(t_list **stash)
+{
+	t_list	*last;
+	t_list	*clean_node;
+	int		i;
+	int		j;
+
+	clean_node = malloc(sizeof(t_list));
+	if (stash == NULL || clean_node == NULL)
+		return ;
+	clean_node->next = NULL;
+	last = ft_lst_get_last(*stash);
+	i = 0;
+	while (last->content[i] && last->content[i] != '\n')
+		i++;
+	if (last->content && last->content[i] == '\n')
+		i++;
+	clean_node->content = malloc(sizeof(char)
+			* ((gnl_strlen(last->content) - i) + 1));
+	if (clean_node->content == NULL)
+		return ;
+	j = 0;
+	while (last->content[i])
+		clean_node->content[j++] = last->content[i++];
+	clean_node->content[j] = '\0';
+	free_stash(*stash);
+	*stash = clean_node;
 }
