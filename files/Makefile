@@ -22,7 +22,7 @@ MLX_L	=	-L ../mlx_linux -lmlx -lXext -lX11
 LIBFT_L = $(LIBFT_P)/libft.a
 GNL_L = $(GNL_P)/gnl.a
 
-SRCS	=	so_long.c
+SRCS	=	so_long.c ./utils/t_loude.c ./utils/key_hooks.c
 
 
 

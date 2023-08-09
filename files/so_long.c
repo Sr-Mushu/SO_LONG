@@ -5,7 +5,7 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: dagabrie <dagabrie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/07/27 16:08:21 by dagabrie          #+#    #+#             */
+/*   Created: 2023/07/27 32:08:21 by dagabrie          #+#    #+#             */
 /*   Updated: 2023/07/28 18:33:34 by dagabrie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
@@ -29,8 +29,8 @@ t_map *map_data(void)
 
 
 //guarda o mapa numa matriz
-void map_to_array(int fd, int *num_lines, char ***map) {
-    *num_lines = 0;
+void map_to_array(int fd, int *m_height, char ***map) {
+    *m_height = 0;
     *map = NULL;
     int j = 0;
 
@@ -48,12 +48,12 @@ void map_to_array(int fd, int *num_lines, char ***map) {
         j++;
 		
     }
-   		*num_lines = j;
+   		*m_height = j;
 }
 
 //printa a matriz
-void paint_map(char **map, int num_lines) {
-    for (int i = 0; i < num_lines; i++) {
+void paint_map(char **map, int m_height) {
+    for (int i = 0; i < m_height; i++) {
         printf("%s\n", map[i]);
     }
 }
@@ -66,17 +66,9 @@ void create_windo(int x, int y)
 
 	p_wind = window_data();
 	p_wind->mlx = mlx_init();
-	p_wind->mlx_win = mlx_new_window(p_wind->mlx, 64*x, 64*y, "PRAIRIE_KING");
+	p_wind->mlx_win = mlx_new_window(p_wind->mlx, 32*x, 32*y, "PRAIRIE_KING");
 }
 
-void no_textures(int x, int y)
-{
-	t_wind 	*p_wind;
-
-	p_wind = window_data();
-	p_wind->img = mlx_xpm_file_to_image(p_wind->mlx, NO_TEXTURES, &p_wind->x, &p_wind->y);
-	mlx_put_image_to_window(p_wind->mlx, p_wind->mlx_win, p_wind->img, 64*x, 64*y);
-}
 
 //vai carregar o mapa com no_testure por enuanto
 void loude_map(void)
@@ -91,14 +83,26 @@ void loude_map(void)
 		i = 0;
 		while(p_map->map[j][i])
 		{
-			printf("%d ,%d \n",j,i);
-			if(p_map->map[j][i] == '1')		
-				no_textures(i,j);
+			if(p_map->map[j][i] == '0')		
+				flor_texture(i,j);
+			else if(p_map->map[j][i] == '1')		
+				wall_texture(i,j);
+			else if(p_map->map[j][i] == 'C')
+				coin_texture(i,j);
+			else if(p_map->map[j][i] == 'P')
+				{
+					play_texture(i,j);
+					p_map->play_x = i;
+					p_map->play_y = j;
+				}
+			else
+				empt_texture(i,j);
 			i++;
 		}
 		j++;
 	}
 }
+
 //main
 int	main(int argc, char **argv)
 {
@@ -107,10 +111,12 @@ int	main(int argc, char **argv)
 
 	p_map = map_data(); 
 	p_wind = window_data();
-	map_to_array(open(argv[1] ,O_RDWR) , &p_map->num_lines, &p_map->map);
-	paint_map(p_map->map, p_map->num_lines);
-	create_windo(ft_strlen(p_map->map[0]),p_map->num_lines);
-	loude_map();
+	map_to_array(open(argv[1] ,O_RDWR) , &p_map->m_height, &p_map->map);
+	paint_map(p_map->map, p_map->m_height);
+	create_windo(ft_strlen(p_map->map[0]),p_map->m_height);
+	loude_texture();
+	start_texture(ft_strlen(p_map->map[0])/2-2,p_map->m_height/2-2);
+	mlx_key_hook(p_wind->mlx_win, key_hooks, &p_wind);
 	mlx_loop(p_wind->mlx);
 
 }
