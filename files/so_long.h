@@ -26,6 +26,11 @@
 # define COIN "textures/coin.xpm"
 # define START "textures/Start.xpm"
 
+# define UP 119
+# define DOWN 115
+# define LEFT 97
+# define RIGHT 100
+
 typedef struct s_map
 {
 	char 	**map;
@@ -74,4 +79,7 @@ void start_texture(int x, int y);
 
 int	key_hooks(int keycode, t_wind *p_wind);
 
+//so_long.c
+
+void paint_map(char **map, int m_height);
 #endif
