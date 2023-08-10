@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: dagabrie <dagabrie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/07/27 32:08:21 by dagabrie          #+#    #+#             */
-/*   Updated: 2023/07/28 18:33:34 by dagabrie         ###   ########.fr       */
+/*   Created: Invalid date        by dagabrie          #+#    #+#             */
+/*   Updated: 2023/08/10 15:51:35 by dagabrie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,8 @@ void map_to_array(int fd, int *m_height, char ***map) {
     *map = NULL;
     int j = 0;
 
-    while (1) {
+    while (1) 
+	{
         char *line = get_next_line(fd);
         if (line == NULL)
 		{
@@ -44,7 +45,7 @@ void map_to_array(int fd, int *m_height, char ***map) {
         *map = (char**)realloc(*map, (j + 1) * sizeof(char*));
         (*map)[j] = (char*)malloc((ft_strlen(line) + 1) * sizeof(char));
         ft_strlcpy((*map)[j], line,ft_strlen(line));
-
+		
         j++;
 		
     }
@@ -83,17 +84,27 @@ void loude_map(void)
 		i = 0;
 		while(p_map->map[j][i])
 		{
-			if(p_map->map[j][i] == '0')		
+			if (p_map->map[j][i] == '0')		
 				flor_texture(i,j);
-			else if(p_map->map[j][i] == '1')		
+			else if (p_map->map[j][i] == '1')		
 				wall_texture(i,j);
-			else if(p_map->map[j][i] == 'C')
-				coin_texture(i,j);
-			else if(p_map->map[j][i] == 'P')
+			else if (p_map->map[j][i] == 'P')
 				{
 					play_texture(i,j);
 					p_map->play_x = i;
 					p_map->play_y = j;
+				}
+			else if (p_map->map[j][i] == 'E')		
+				{
+					if(p_map->open_dor == 5)
+						exit_texture(i,j);
+					else
+						flor_texture(i,j);
+				}
+			else if (p_map->map[j][i] == 'C')
+				{	
+					++p_map->num_coins;
+					coin_texture(i,j);
 				}
 			else
 				empt_texture(i,j);
@@ -101,6 +112,9 @@ void loude_map(void)
 		}
 		j++;
 	}
+	if(p_map->num_coins == 0)
+		p_map->open_dor = 5;
+	p_map->num_coins = 0;
 }
 
 //main
@@ -112,6 +126,7 @@ int	main(int argc, char **argv)
 	p_map = map_data(); 
 	p_wind = window_data();
 	map_to_array(open(argv[1] ,O_RDWR) , &p_map->m_height, &p_map->map);
+	map_to_array(open(argv[1] ,O_RDWR) , &p_map->m_height, &p_map->map_orig);
 	paint_map(p_map->map, p_map->m_height);
 	create_windo(ft_strlen(p_map->map[0]),p_map->m_height);
 	loude_texture();

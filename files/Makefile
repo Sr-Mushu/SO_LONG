@@ -6,11 +6,11 @@
 #    By: dagabrie <dagabrie@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/07/27 16:38:26 by dagabrie          #+#    #+#              #
-#    Updated: 2023/07/27 17:00:41 by dagabrie         ###   ########.fr        #
+#    Updated: 2023/08/10 17:17:50 by dagabrie         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME	=	so_long
+NAME	=	prairie_king
 
 LIBFT_P = ./libft
 GNL_P = ./gnl
@@ -22,7 +22,7 @@ MLX_L	=	-L ../mlx_linux -lmlx -lXext -lX11
 LIBFT_L = $(LIBFT_P)/libft.a
 GNL_L = $(GNL_P)/gnl.a
 
-SRCS	=	so_long.c ./utils/t_loude.c ./utils/key_hooks.c
+SRCS	=	so_long.c ./utils/t_loude.c ./utils/key_hooks.c ./utils/exit_game.c
 
 
 

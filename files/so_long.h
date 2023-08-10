@@ -6,7 +6,7 @@
 /*   By: dagabrie <dagabrie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/27 16:08:24 by dagabrie          #+#    #+#             */
-/*   Updated: 2023/07/28 18:32:28 by dagabrie         ###   ########.fr       */
+/*   Updated: 2023/08/10 17:17:25 by dagabrie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,8 @@
 # define TEST "textures/test.xpm"
 # define PLAY "textures/play.xpm"
 # define COIN "textures/coin.xpm"
+# define ENAM "textures/enam.xpm"
+# define EXIT "textures/exit.xpm"
 # define START "textures/Start.xpm"
 
 # define UP 119
@@ -34,10 +36,14 @@
 typedef struct s_map
 {
 	char 	**map;
+	char 	**map_orig;
 	int 	m_length;
 	int		m_height;
 	int     play_x;
 	int		play_y;
+	int		num_coins;
+	int		open_dor;
+	int		exit_flag;
 
 }			t_map;
 
@@ -53,7 +59,8 @@ typedef struct s_wind
 	void	*t_test;
 	void	*t_play;
 	void	*t_coin;
-	void	*t_start
+	void	*t_exit;
+	void	*t_start;
 
 }			t_wind;
 
@@ -74,6 +81,7 @@ void play_texture(int x, int y);
 void empt_texture(int x, int y);
 void test_texture(int x, int y);
 void start_texture(int x, int y);
+void exit_texture(int x, int y);
 
 //key_hooks.c
 
@@ -81,5 +89,10 @@ int	key_hooks(int keycode, t_wind *p_wind);
 
 //so_long.c
 
+void loude_map(void);
 void paint_map(char **map, int m_height);
+
+//exit_game.c
+
+void exit_game(int code);
 #endif
