@@ -6,7 +6,7 @@
 /*   By: dagabrie <dagabrie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/27 16:08:24 by dagabrie          #+#    #+#             */
-/*   Updated: 2023/08/10 17:17:25 by dagabrie         ###   ########.fr       */
+/*   Updated: 2023/08/11 18:50:44 by dagabrie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,7 @@ typedef struct s_map
 	int		num_coins;
 	int		open_dor;
 	int		exit_flag;
+	int 	strat_flag;
 
 }			t_map;
 
