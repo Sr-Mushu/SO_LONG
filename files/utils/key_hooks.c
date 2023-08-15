@@ -6,7 +6,7 @@
 /*   By: dagabrie <dagabrie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/10 11:39:26 by dagabrie          #+#    #+#             */
-/*   Updated: 2023/08/11 18:51:41 by dagabrie         ###   ########.fr       */
+/*   Updated: 2023/08/15 17:03:15 by dagabrie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,13 +14,16 @@
 
 void p_move(int old_x,int old_y,int new_x,int new_y)
 {
-    t_map	*p_map;
+    t_map	   *p_map;
+	static int cout;
 	
 	p_map = map_data();
-	printf("new_x[%d] new_y[%d]\n", new_x, new_y);
+	printf("player:  new_x[%d] new_y[%d]\n", new_x, new_y);
+	printf("player:  old_x[%d],old_y[%d]\n", old_x, old_y);
+	printf("player:  number %d\n", cout++);
     if(p_map->map[new_y][new_x] == 'C')
     {
-        printf("coin !!");
+        printf("coin !!\n");
     }
     if(p_map->map[new_y][new_x] != '1')
     {
@@ -43,7 +46,6 @@ void pp_move(int keycode)
     t_map	*p_map;
 
 	p_map = map_data();
-	printf("player:  y[%d],x[%d]\n", p_map->play_y, p_map->play_x);
     if(keycode == UP)
         p_move(p_map->play_x,p_map->play_y,p_map->play_x,--p_map->play_y);
     else if(keycode == DOWN)
@@ -78,8 +80,6 @@ int	key_hooks(int keycode, t_wind *p_wind)
 		}
 		else if(keycode == 65307)
 			exit_game(1);
-		else
-			printf(" ? : %d\n", keycode);
 		return (0);
 	 }
 }

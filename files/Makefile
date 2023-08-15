@@ -6,7 +6,7 @@
 #    By: dagabrie <dagabrie@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/07/27 16:38:26 by dagabrie          #+#    #+#              #
-#    Updated: 2023/08/11 18:38:07 by dagabrie         ###   ########.fr        #
+#    Updated: 2023/08/15 18:39:01 by dagabrie         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,15 +16,20 @@ LIBFT_P = ./libft
 GNL_P = ./gnl
 
 CC		=	cc
-CFLAGS	=	 -Imlx_linux -g -fsanitize=address
+CFLAGS	=	-Imlx_linux -g -fsanitize=address
 #-Wall -Werror -Wextra
 MLX_L	=	-L ../mlx_linux -lmlx -lXext -lX11
 LIBFT_L = $(LIBFT_P)/libft.a
 GNL_L = $(GNL_P)/gnl.a
 
-SRCS	=	so_long.c ./utils/t_loude.c ./utils/key_hooks.c ./utils/exit_game.c
-
-
+SRCS	=	so_long.c	\
+./utils/t_loude.c		\
+./utils/key_hooks.c		\
+./utils/exit_game.c		\
+./utils/static_data.c	\
+./utils/loude_map.c		\
+./utils/map_vali.c		\
+./utils/map_status.c
 
 all:	$(LIBFT_L) $(GNL_L) $(NAME)
 
