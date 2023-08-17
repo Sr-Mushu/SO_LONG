@@ -6,7 +6,7 @@
 /*   By: dagabrie <dagabrie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/10 14:49:17 by dagabrie          #+#    #+#             */
-/*   Updated: 2023/08/15 18:30:43 by dagabrie         ###   ########.fr       */
+/*   Updated: 2023/08/17 16:19:22 by dagabrie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,9 +62,7 @@ void loude_map(void)
 		p_map->open_dor = 5;
 	p_map->num_coins = 0;
 }
-
 #if 0
-//Guarda o mapa numa matriz
 void map_to_array(int fd, int *m_height, char ***map) 
 {
 	*m_height = 0;
@@ -80,7 +78,7 @@ void map_to_array(int fd, int *m_height, char ***map)
 			(*map)[j] = NULL;
 			break; // Chegamos ao final do arquivo.
 		}
-		// Aloca memória para a linha e copia o conteúdo da próxima linha para o mapa.
+		// Aloca memória para a linha e copia o conteúdo da próxima linha para o mapa.	
 		*map = (char**)realloc(*map, (j + 1) * sizeof(char*));
 		(*map)[j] = (char*)malloc((ft_strlen(line) + 1) * sizeof(char));
 		ft_strlcpy((*map)[j], line,ft_strlen(line));
@@ -88,49 +86,36 @@ void map_to_array(int fd, int *m_height, char ***map)
 	}
 	*m_height = j;
 }
-
 #else
+
 void map_to_array(int fd, int *m_height, char ***map) 
 {
-    *m_height = 0;
-    *map = NULL;
-    int j = 0;
-    int encountered_empty_line = 0; // Flag to track if an empty line was encountered
+    const int max_lines = 100; // Defina o número máximo de linhas
 
-    while (1) 
+    *m_height = 0;
+    *map = (char **)malloc(max_lines * sizeof(char *)); // Aloca memória para o array de ponteiros
+    int j = 0;
+
+    while (j < max_lines) 
     {
         char *line = get_next_line(fd);
         if (line == NULL)
         {
-            *map = (char**)realloc(*map, (j + 1) * sizeof(char*));
             (*map)[j] = NULL;
-            break; // Reached the end of the file.
+            break; // Chegamos ao final do arquivo.
         }
-        if (line[0] == '\n' && line[1] == '\0') 
-        {
-            encountered_empty_line = 1; // Set the flag
-            free(line);
-            continue;
-        }
-        if (encountered_empty_line && line[0] != '\n') 
-        {
-            exit_game(10); // Call the exit_game function with argument 10
-        }
-
-        *map = (char**)realloc(*map, (j + 1) * sizeof(char*));
-        (*map)[j] = (char*)malloc((ft_strlen(line) + 1) * sizeof(char));
+        // Aloca memória para a linha e copia o conteúdo da próxima linha para o mapa.
+        (*map)[j] = (char *)malloc((ft_strlen(line)) * sizeof(char));
         ft_strlcpy((*map)[j], line, ft_strlen(line));
+		free(line);
         j++;
-        free(line);
     }
     *m_height = j;
 }
 #endif
-
 //cria a janela de acordo com o tamanho do mapa
 void create_windo(int x, int y)
 {
-
 	t_wind 	*p_wind;
 
 	p_wind = window_data();

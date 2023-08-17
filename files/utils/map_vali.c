@@ -6,7 +6,7 @@
 /*   By: dagabrie <dagabrie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/27 16:08:30 by dagabrie          #+#    #+#             */
-/*   Updated: 2023/08/15 18:16:59 by dagabrie         ###   ########.fr       */
+/*   Updated: 2023/08/16 16:00:06 by dagabrie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,18 +19,24 @@ void fd_is_ber(char *fd_name)
 	extin = ".ber";
 	len= ft_strlen(fd_name);
     if (len >= 4 && ft_strncmp(fd_name + len - 4, extin, ft_strlen(extin)) != 0)
-	{
-		write(2,"nome no valido\n",16);
-        exit_game(0);
-    }
+        exit_game(3);
 }
 
 void valid_lvl_1(void)
 {
 	t_map	*p_map;
+	int i;
+	int tmp;
 
 	p_map = map_data();
-	
+	i = p_map->m_height;
+	tmp = ft_strlen(p_map->map[i]);
+	while(p_map->map[i])
+	{
+		if( tmp != ft_strlen(p_map->map[i]))
+			exit_game(9);
+		i--;
+	}
 }
 void valid_lvl_2(void)
 {

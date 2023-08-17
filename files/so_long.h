@@ -6,7 +6,7 @@
 /*   By: dagabrie <dagabrie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/27 16:08:24 by dagabrie          #+#    #+#             */
-/*   Updated: 2023/08/15 17:24:30 by dagabrie         ###   ########.fr       */
+/*   Updated: 2023/08/16 17:35:13 by dagabrie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,9 @@
 # define ENAM "textures/enam.xpm"
 # define EXIT "textures/exit.xpm"
 # define START "textures/Start.xpm"
+
+#define CODE_TEST 0
+#define MAX_STRING_LENGTH 1000
 
 # define UP 119
 # define DOWN 115

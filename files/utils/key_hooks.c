@@ -6,7 +6,7 @@
 /*   By: dagabrie <dagabrie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/10 11:39:26 by dagabrie          #+#    #+#             */
-/*   Updated: 2023/08/15 17:03:15 by dagabrie         ###   ########.fr       */
+/*   Updated: 2023/08/17 12:10:31 by dagabrie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,15 +18,13 @@ void p_move(int old_x,int old_y,int new_x,int new_y)
 	static int cout;
 	
 	p_map = map_data();
-	printf("player:  new_x[%d] new_y[%d]\n", new_x, new_y);
-	printf("player:  old_x[%d],old_y[%d]\n", old_x, old_y);
-	printf("player:  number %d\n", cout++);
     if(p_map->map[new_y][new_x] == 'C')
     {
         printf("coin !!\n");
     }
     if(p_map->map[new_y][new_x] != '1')
     {
+		printf("player:  passo %d\n", cout++);
 		if (p_map->map_orig[old_y][old_x] == 'E')
 			p_map->map[old_y][old_x] = 'E';
 		else
@@ -35,7 +33,7 @@ void p_move(int old_x,int old_y,int new_x,int new_y)
     }
 	if(p_map->map_orig[new_y][new_x] == 'E' && p_map->open_dor == 5)
 	{
-		printf("#####WIN####\n");
+		printf("----WIN----\n");
 		exit_game(0);
 	}
     loude_map();
