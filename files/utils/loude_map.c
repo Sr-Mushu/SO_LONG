@@ -6,7 +6,7 @@
 /*   By: dagabrie <dagabrie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/10 14:49:17 by dagabrie          #+#    #+#             */
-/*   Updated: 2023/08/17 16:19:22 by dagabrie         ###   ########.fr       */
+/*   Updated: 2023/08/17 16:56:09 by dagabrie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,8 +105,8 @@ void map_to_array(int fd, int *m_height, char ***map)
             break; // Chegamos ao final do arquivo.
         }
         // Aloca memória para a linha e copia o conteúdo da próxima linha para o mapa.
-        (*map)[j] = (char *)malloc((ft_strlen(line)) * sizeof(char));
-        ft_strlcpy((*map)[j], line, ft_strlen(line));
+        (*map)[j] = (char *)malloc((ft_strlen(line)+1) * sizeof(char));
+        ft_strlcpy((*map)[j], line, ft_strlen(line)+1);
 		free(line);
         j++;
     }
