@@ -6,7 +6,7 @@
 /*   By: dagabrie <dagabrie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/27 16:08:24 by dagabrie          #+#    #+#             */
-/*   Updated: 2023/08/18 17:23:37 by dagabrie         ###   ########.fr       */
+/*   Updated: 2023/08/18 17:29:57 by dagabrie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,9 +45,10 @@ typedef struct s_map
 	int     play_x;
 	int		play_y;
 	int		num_coins;
-	int		num_other;
+	int		flg_coins;
 	int		num_play;
 	int		num_exit;
+	int     flg_exit;
 	int		open_dor;
 	int		exit_flag;
 	int 	strat_flag;

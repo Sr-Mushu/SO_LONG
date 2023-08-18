@@ -6,7 +6,7 @@
 /*   By: dagabrie <dagabrie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/27 16:08:30 by dagabrie          #+#    #+#             */
-/*   Updated: 2023/08/18 17:09:23 by dagabrie         ###   ########.fr       */
+/*   Updated: 2023/08/18 17:43:18 by dagabrie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -171,12 +171,12 @@ void	check_path(int x, int y)
 		else if (p_map->map[x][y] == 'E')
 		{
 			p_map->map[x][y] = 'o';
-			p_map->num_exit += 1;
+			p_map->flg_exit = 1;
 		}
 		else if (p_map->map[x][y] == 'C')
 		{
 			p_map->map[x][y] = 'o';
-			p_map->num_coins += 1;
+			p_map->flg_coins += 1;
 		}
 		else if (p_map->map[x][y] == '0')
 			p_map->map[x][y] = 'o';
@@ -194,6 +194,14 @@ void	valid_chars(void)
 	p_map = map_data();
 	paint_map(p_map->map,p_map->m_height);
 	check_path(p_map->play_x, p_map->play_x);
+	if(p_map->num_exit != 1)
+		exit_game(16);
+	if(p_map->num_play != 1)
+		exit_game(15);
+	if(p_map->flg_exit != 1)
+		exit_game(14);
+	if(p_map->num_coins != p_map->flg_coins)
+		exit_game(13);
 	copy_matrix();
 }
 

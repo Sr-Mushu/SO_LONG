@@ -6,11 +6,11 @@
 #    By: dagabrie <dagabrie@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/07/27 16:38:26 by dagabrie          #+#    #+#              #
-#    Updated: 2023/08/17 16:12:03 by dagabrie         ###   ########.fr        #
+#    Updated: 2023/08/18 17:39:21 by dagabrie         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME	=	prairie_king
+NAME	=	so_long
 
 LIBFT_P = ./libft
 GNL_P = ./gnl

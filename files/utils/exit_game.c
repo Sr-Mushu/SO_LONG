@@ -6,7 +6,7 @@
 /*   By: dagabrie <dagabrie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/10 17:13:34 by dagabrie          #+#    #+#             */
-/*   Updated: 2023/08/18 17:23:09 by dagabrie         ###   ########.fr       */
+/*   Updated: 2023/08/18 17:42:09 by dagabrie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,6 +71,14 @@ int    close_win(int keycode)
 
 void exit_game(int code)
 {
+	if(code == 16)
+		write(2,"Mapa invalido mais de uma exit\n",32);
+	if(code == 15)
+		write(2,"Mapa invalido mais de um player\n",33);
+	if(code == 14)
+		write(2,"Mapa invalido o player nao chega a exit\n",41);
+	if(code == 13)
+		write(2,"Mapa invalido o player nao chega aos coins\n",44);
 	if(code == 12)
 		write(2,"Mapa invalido outros char no meio\n",35);
 	if(code == 11)
