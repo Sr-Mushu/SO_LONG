@@ -6,7 +6,7 @@
 /*   By: dagabrie <dagabrie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: Invalid date        by dagabrie          #+#    #+#             */
-/*   Updated: 2023/08/17 16:56:59 by dagabrie         ###   ########.fr       */
+/*   Updated: 2023/08/18 16:35:24 by dagabrie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,22 @@
 //printa a matriz
 void paint_map(char **map, int m_height) 
 {
-	for (int i = 0; i < m_height; i++) 
-		printf("%s\n", map[i]);
+	for (int i = 0; i < m_height; i++)
+		printf("%s", map[i]);
+	printf("\n");
+}
+
+
+//printa a printa
+void copy_matrix(void) {
+	t_map	*p_map;
+
+	p_map = map_data();
+    for (int i = 0; i < p_map->m_height; i++) {
+        for (int j = 0; j < p_map->m_length; j++) {
+            p_map->map[i][j] = p_map->map_orig[i][j];
+        }
+    }
 }
 
 
@@ -41,7 +55,7 @@ void start_map(char *fd)
 	map_to_array(open(fd ,O_RDWR) , &p_map->m_height, &p_map->map_orig);
 	paint_map(p_map->map, p_map->m_height);
 	status_map();
-	//map_valid();
+	map_valid();
 }
 
 //main

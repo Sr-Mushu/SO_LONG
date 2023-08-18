@@ -6,7 +6,7 @@
 /*   By: dagabrie <dagabrie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/10 17:13:34 by dagabrie          #+#    #+#             */
-/*   Updated: 2023/08/17 16:19:26 by dagabrie         ###   ########.fr       */
+/*   Updated: 2023/08/18 16:17:54 by dagabrie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ void destroy_img(void)
 	if(p_wind->t_wall)
 		mlx_destroy_image(p_wind->mlx,p_wind->t_wall);
 }
-
+/*
 void free_map(char ***map, int m_height) 
 {
     for (int i = 0; i < m_height; i++) {
@@ -58,19 +58,30 @@ void destroy_map(void)
 	//free_map(&p_map->map,p_map->m_height);
 	//free_map(&p_map->map_orig,p_map->m_height);
 }
+*/
 
+//7
 void exit_game(int code)
 {
+	if(code == 12)
+		write(2,"Mapa invalido outros char no meio\n",35);
+	if(code == 11)
+		write(2,"Mapa invalido nao esta reodiado por walls\n",43);
 	if(code == 10)
 		write(2,"Mapa invalido contiudo fora do mapa\n",37);
 	if(code == 9)
-		write(2,"Mapa invalido nao e quadrado\n",30);
+		write(2,"Mapa invalido nao e retangular\n",30);
+	if(code == 8)
+		write(2,"Mapa invalido vazio\n",21);
 	if(code == 3)
 		write(2,"Nome do Mapa nao valido\n",30);
 	if(code == 1)
 		write(2,"You exit the game\n",19);
-	destroy_img();
-	destroy_wind();
-	destroy_map();
+	if(code <= 7)
+	{
+		destroy_img();
+		destroy_wind();
+	}
+	//destroy_map();
 	exit(code);
 }

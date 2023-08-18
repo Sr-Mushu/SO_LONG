@@ -6,7 +6,7 @@
 /*   By: dagabrie <dagabrie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/27 16:08:24 by dagabrie          #+#    #+#             */
-/*   Updated: 2023/08/16 17:35:13 by dagabrie         ###   ########.fr       */
+/*   Updated: 2023/08/18 16:51:31 by dagabrie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 # include "../mlx_linux/mlx.h"
 # include <fcntl.h>
 # include <unistd.h>
+# include <stdio.h>
 # include "libft/libft.h"
 # include "gnl/gnl.h"
 
@@ -44,6 +45,7 @@ typedef struct s_map
 	int     play_x;
 	int		play_y;
 	int		num_coins;
+	int		num_other;
 	int		num_play;
 	int		num_exit;
 	int		open_dor;
@@ -84,6 +86,7 @@ int		key_hooks(int keycode, t_wind *p_wind);
 //so_long.c
 void	loude_map(void);
 void	paint_map(char **map, int m_height);
+void    copy_matrix(void);
 
 //exit_game.c
 void	exit_game(int code);

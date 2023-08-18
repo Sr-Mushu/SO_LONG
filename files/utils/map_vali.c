@@ -6,7 +6,7 @@
 /*   By: dagabrie <dagabrie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/27 16:08:30 by dagabrie          #+#    #+#             */
-/*   Updated: 2023/08/16 16:00:06 by dagabrie         ###   ########.fr       */
+/*   Updated: 2023/08/18 16:54:59 by dagabrie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,33 +22,114 @@ void fd_is_ber(char *fd_name)
         exit_game(3);
 }
 
+#if 0
+void top_and_botn_wall(char *str) {
+    while (*str != '\0') 
+	{
+        if (*str != '1' && *str != '\n') 
+		{
+            exit_game(11);
+        }
+        str++;
+    }
+}
+
 void valid_lvl_1(void)
 {
 	t_map	*p_map;
-	int i;
-	int tmp;
+	int j;
+	int flg;
 
+	j = 0;
+	flg = 0;
 	p_map = map_data();
-	i = p_map->m_height;
-	tmp = ft_strlen(p_map->map[i]);
-	while(p_map->map[i])
+	if(p_map->map[0][0] == '\n' || p_map->map[0][0] == '\0')
+		exit_game(8);
+	while (p_map->map[j] != NULL)
 	{
-		if( tmp != ft_strlen(p_map->map[i]))
-			exit_game(9);
-		i--;
+		if(p_map->map[j][0] == '\n')
+		{
+			if(flg == 0)
+				p_map->m_height = j;
+			flg = 1;
+		}
+		else if(p_map->map[j][0] != '\n' && flg == 1)
+			exit_game(10);
+		j++;
 	}
 }
 void valid_lvl_2(void)
 {
 	t_map	*p_map;
+	int j;
 
-	p_map = map_data();
+	p_map = map_data();	
+	p_map->m_length = ft_strlen(p_map->map[0]);
+	j = 0;
+	while (j < p_map->m_height)
+	{
+		if(p_map->map[j][ft_strlen(p_map->map[j])-1] != '\n')
+		{
+		 	if(ft_strlen(p_map->map[j])+1 != p_map->m_length)
+			exit_game(10);
+		}
+		else if(ft_strlen(p_map->map[j]) != p_map->m_length)
+				exit_game(9);
+		j++;
+	}
+	top_and_botn_wall(p_map->map[0]);
+	top_and_botn_wall(p_map->map[j]);
+}
+
+void valid_lvl_3(void)
+{
+	t_map	*p_map;
+	int i;
+
+	p_map = map_data();	
+	i = 0;
+	//confimar a top wall.
+	while (p_map->map[0][i] != '\n')
+	{
+		if(p_map->map[0][i] != '1')
+		{
+			printf("1\n");
+			exit_game(11);
+		}
+		i++;
+	}
+	i = 0;
+	while (i < p_map->m_height - 1)
+	{
+		if(p_map->map[i][0] != '1')
+		{
+			printf("2\n");
+			exit_game(11);
+		}
+		if(p_map->map[i][p_map->m_length-2] != '1')
+		{
+			printf("3\n");
+			exit_game(11);
+		}
+		i++;
+	}
+	i = 0;len= ft_strlen(fd_name);
+	while (p_map->map[p_map->m_height][i] != '\n' && p_map->map[p_map->m_height][i] != '\0')
+	{
+		if(p_map->map[p_map->m_height][i] != '1')
+		{
+			printf("4\n");
+			exit_game(11);
+		}
+		i++;
+	}
 }
 
 void	map_valid(void)
 {
 	valid_lvl_1();
 	valid_lvl_2();
+	valid_lvl_3();
 }
 
 //1. ver se e quadrado
@@ -74,3 +155,115 @@ void	flood_fill(start x, start y, tamanho x, tamanho y)
 	flood_fill(start x, start y + 1, pos x, pos y);
 	flood_fill(start x, start y - 1, pos x, pos y);
 }*/
+#else
+
+
+void	check_path(int x, int y)
+{
+	t_map	*p_map;
+
+	p_map = map_data();
+	if (p_map->map[x][y] == 'P' || p_map->map[x][y] == 'E' ||
+		p_map->map[x][y] == 'C' || p_map->map[x][y] == '0')
+	{
+		if (p_map->map[x][y] == 'P')
+			p_map->map[x][y] = 'o';
+		else if (p_map->map[x][y] == 'E')
+		{
+			p_map->map[x][y] = 'o';
+			p_map->num_exit += 1;
+		}
+		else if (p_map->map[x][y] == 'C')
+		{
+			p_map->map[x][y] = 'o';
+			p_map->num_coins += 1;
+		}
+		else if (p_map->map[x][y] == '0')
+			p_map->map[x][y] = 'o';
+		check_path(x + 1, y);
+		check_path(x, y + 1);
+		check_path(x - 1, y);
+		check_path(x, y - 1);
+	}
+}
+
+void	valid_chars(void)
+{
+	t_map	*p_map;
+
+	p_map = map_data();
+	paint_map(p_map->map,p_map->m_height);
+	printf("%d\n",p_map->num_other);
+	if (p_map->num_coins < 1 || p_map->num_play != 1 || p_map->num_exit != 1 || p_map->num_other != 0)
+		exit_game(12);
+	check_path(p_map->play_x, p_map->play_x);
+	copy_matrix();
+}
+
+
+void is_squer(void)
+{
+	t_map	*p_map;
+	int j;
+
+	p_map = map_data();	
+	p_map->m_length = ft_strlen(p_map->map[0]); // valor length sen setado aqui !
+	j = 0;
+	while (j < p_map->m_height)
+	{
+		if(p_map->map[j][ft_strlen(p_map->map[j])-1] != '\n')
+		{
+		 	if(ft_strlen(p_map->map[j])+1 != p_map->m_length)
+			exit_game(10);
+		}
+		else if(ft_strlen(p_map->map[j]) != p_map->m_length)
+			exit_game(9);	
+		j++;
+	}
+}
+
+void	is_valid(void)
+{
+	int	i;
+	int	j;
+	int	k;
+	t_map	*p_map;
+
+	p_map = map_data();	
+	i = -1;
+	j = ft_strlen(p_map->map[0]);
+	p_map->m_length = j - 1;
+	while (p_map->map && p_map->map[++i])
+	{
+		k = j - 1;
+		if (!p_map->map[i + 1])
+			j--;
+		if ((int)ft_strlen(p_map->map[i]) != j)
+			exit_game(9);
+		while (--k >= 0)
+		{
+			if ((i == 0 || !p_map->map[i + 1]) && p_map->map[i][k] != '1')
+			{
+				printf("1\n");
+				exit_game(11);
+			}
+			if ((k == 0 || k == (j - 2)) && p_map->map[i][k] != '1')
+			{
+				printf("2\n");
+				exit_game(11);
+			}
+		}
+	}
+}
+
+void map_valid()
+{
+	t_map	*p_map;
+
+	p_map = map_data();
+	status_map();
+	is_squer();
+	is_valid();
+	valid_chars();
+}
+#endif
