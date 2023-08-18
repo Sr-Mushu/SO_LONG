@@ -6,7 +6,7 @@
 /*   By: dagabrie <dagabrie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/10 11:39:15 by dagabrie          #+#    #+#             */
-/*   Updated: 2023/08/18 17:01:36 by dagabrie         ###   ########.fr       */
+/*   Updated: 2023/08/18 17:03:48 by dagabrie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ void status_cout(int j, int i)
 	else if (p_map->map[j][i] == 'C')
 		++p_map->num_coins;
 	else if (!(p_map->map[j][i] == '1' && p_map->map[j][i] == '0' && p_map->map[j][i] == '\n')){
-		//write(1,&p_map->map[j][i],1);
+		write(1,&p_map->map[j][i],1);
 		++p_map->num_other;
 	}
 }
