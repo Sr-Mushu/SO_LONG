@@ -6,7 +6,7 @@
 /*   By: dagabrie <dagabrie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/27 16:08:30 by dagabrie          #+#    #+#             */
-/*   Updated: 2023/08/18 16:54:59 by dagabrie         ###   ########.fr       */
+/*   Updated: 2023/08/18 17:09:23 by dagabrie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -193,9 +193,6 @@ void	valid_chars(void)
 
 	p_map = map_data();
 	paint_map(p_map->map,p_map->m_height);
-	printf("%d\n",p_map->num_other);
-	if (p_map->num_coins < 1 || p_map->num_play != 1 || p_map->num_exit != 1 || p_map->num_other != 0)
-		exit_game(12);
 	check_path(p_map->play_x, p_map->play_x);
 	copy_matrix();
 }

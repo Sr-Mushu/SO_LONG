@@ -6,7 +6,7 @@
 /*   By: dagabrie <dagabrie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/10 17:13:34 by dagabrie          #+#    #+#             */
-/*   Updated: 2023/08/18 16:17:54 by dagabrie         ###   ########.fr       */
+/*   Updated: 2023/08/18 17:23:09 by dagabrie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,6 +61,14 @@ void destroy_map(void)
 */
 
 //7
+
+int    close_win(int keycode)
+{
+    (void)(keycode);
+	exit_game(4);
+	return(100000);
+}
+
 void exit_game(int code)
 {
 	if(code == 12)
@@ -73,6 +81,8 @@ void exit_game(int code)
 		write(2,"Mapa invalido nao e retangular\n",30);
 	if(code == 8)
 		write(2,"Mapa invalido vazio\n",21);
+	if(code == 4)
+		write(2,"You cose the wind\n",19);
 	if(code == 3)
 		write(2,"Nome do Mapa nao valido\n",30);
 	if(code == 1)

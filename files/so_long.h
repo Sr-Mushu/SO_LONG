@@ -6,7 +6,7 @@
 /*   By: dagabrie <dagabrie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/27 16:08:24 by dagabrie          #+#    #+#             */
-/*   Updated: 2023/08/18 16:51:31 by dagabrie         ###   ########.fr       */
+/*   Updated: 2023/08/18 17:23:37 by dagabrie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,6 +90,7 @@ void    copy_matrix(void);
 
 //exit_game.c
 void	exit_game(int code);
+int	    close_win(int keycode);
 
 //loude_map.c
 void	loude_map(void);

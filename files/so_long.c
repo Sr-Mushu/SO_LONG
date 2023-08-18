@@ -6,7 +6,7 @@
 /*   By: dagabrie <dagabrie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: Invalid date        by dagabrie          #+#    #+#             */
-/*   Updated: 2023/08/18 16:35:24 by dagabrie         ###   ########.fr       */
+/*   Updated: 2023/08/18 17:22:03 by dagabrie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,6 +67,7 @@ int	main(int argc, char **argv)
 	start_map(argv[1]);
 	start_wind();
 	mlx_key_hook(p_wind->mlx_win, key_hooks, &p_wind);
+	mlx_hook(p_wind->mlx_win, 17, 1L << 0, close_win, &p_wind);
 	mlx_loop(p_wind->mlx);
 
 }
