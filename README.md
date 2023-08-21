@@ -11,7 +11,8 @@ Version: 2.3<br>
 ##
 
 ## Erro: list
-00:<br>
+01x means that it was executed successfully.<br>
+00x:<br>
 Erro: 18 : Invalid map name<br>
 Erro: 17 : Invalid map, no coins found<br>
 Erro: 16 : Invalid map, too many or missing exits<br>
@@ -23,6 +24,6 @@ Erro: 11 : Invalid map, not surrounded by walls<br>
 Erro: 10 : Invalid map, content outside the map<br>
 Erro: 19 : Invalid map, not rectangular<br>
 Erro: 20 : Invalid map, empty<br>
-01:<br>
+01x:<br>
 Erro: 4 : You chose the wind<br>
 Erro: 1 : You exited the game<br>
