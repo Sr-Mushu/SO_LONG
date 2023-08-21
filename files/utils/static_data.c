@@ -6,22 +6,22 @@
 /*   By: dagabrie <dagabrie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/15 11:49:44 by dagabrie          #+#    #+#             */
-/*   Updated: 2023/08/15 11:50:49 by dagabrie         ###   ########.fr       */
+/*   Updated: 2023/08/18 18:10:03 by dagabrie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../so_long.h"
 
-t_wind *window_data(void)
+t_wind	*window_data(void)
 {
-	static t_wind wind;
+	static t_wind	wind;
 
-	return(&wind);
+	return (&wind);
 }
 
-t_map *map_data(void)
+t_map	*map_data(void)
 {
-	static t_map map;
+	static t_map	map;
 
-	return(&map);
+	return (&map);
 }
