@@ -10,7 +10,7 @@ Version: 2.3<br>
 
 ##
 
-## Erros: list
+## Erro: list
 Erro: 18 : Invalid map name<br>
 Erro: 17 : Invalid map, no coins found<br>
 Erro: 16 : Invalid map, too many or missing exits<br>
