@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   libft.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dagabrie <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: dagabrie <dagabrie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/19 10:38:07 by dagabrie          #+#    #+#             */
-/*   Updated: 2021/12/28 19:09:54 by dagabrie         ###   ########.fr       */
+/*   Updated: 2023/08/21 16:05:17 by dagabrie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,11 +75,14 @@ size_t	ft_strlcat(char *dest, const char *src, size_t size);
 /* Length of a string */
 size_t	ft_strlen(const char *stg);
 
-/* Returns the string from the first character found */
+/* Returns the string from the first character found. */
 char	*ft_strchr(const char *stg, int C);
 
-/* Returns the string from the last character found */
+/* Returns the string from the last character found. */
 char	*ft_strrchr(const char *stg, int C);
+
+/* Copies a string.*/
+char	*ft_strcpy(char *s1, char *s2);
 
 /* Compares a certain quantity of bytes */
 int		ft_strncmp(const char *stg_01, const char *stg_02, size_t size);

@@ -6,7 +6,7 @@
 /*   By: dagabrie <dagabrie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/10 14:49:17 by dagabrie          #+#    #+#             */
-/*   Updated: 2023/08/18 18:08:09 by dagabrie         ###   ########.fr       */
+/*   Updated: 2023/08/21 12:23:12 by dagabrie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,7 @@ void	loude_t_map(int j, int i)
 	}
 }
 
+// Loads the textures according to the map.
 void	loude_map(void)
 {
 	int		j;
@@ -65,15 +66,16 @@ void	loude_map(void)
 	p_map->num_coins = 0;
 }
 
+// Converts the map to an array representation.
 void	map_to_array(int fd, int *m_height, char ***map)
 {
-	int		j;
 	char	*line;
+	int		j;
+	int		max_lines;
 
-	const int max_lines = 100; // Defina o número máximo de linhas
+	max_lines = 300;
 	*m_height = 0;
 	*map = (char **)malloc(max_lines * sizeof(char *));
-		// Aloca memória para o array de ponteiros
 	j = 0;
 	while (j < max_lines)
 	{
@@ -81,9 +83,8 @@ void	map_to_array(int fd, int *m_height, char ***map)
 		if (line == NULL)
 		{
 			(*map)[j] = NULL;
-			break ; // Chegamos ao final do arquivo.
+			break ;
 		}
-		// Aloca memória para a linha e copia o conteúdo da próxima linha para o mapa.
 		(*map)[j] = (char *)malloc((ft_strlen(line) + 1) * sizeof(char));
 		ft_strlcpy((*map)[j], line, ft_strlen(line) + 1);
 		free(line);
@@ -92,7 +93,7 @@ void	map_to_array(int fd, int *m_height, char ***map)
 	*m_height = j;
 }
 
-// cria a janela de acordo com o tamanho do mapa
+// Creates the window according to the map size.
 void	create_windo(int x, int y)
 {
 	t_wind	*p_wind;

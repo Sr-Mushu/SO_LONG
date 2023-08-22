@@ -6,7 +6,7 @@
 /*   By: dagabrie <dagabrie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/10 11:39:26 by dagabrie          #+#    #+#             */
-/*   Updated: 2023/08/18 18:07:13 by dagabrie         ###   ########.fr       */
+/*   Updated: 2023/08/21 17:00:14 by dagabrie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,11 +20,11 @@ void	p_move(int old_x, int old_y, int new_x, int new_y)
 	p_map = map_data();
 	if (p_map->map[new_y][new_x] == 'C')
 	{
-		printf("coin !!\n");
+		write(1, "Coin\n", 6);
 	}
 	if (p_map->map[new_y][new_x] != '1')
 	{
-		printf("player:  passo %d\n", cout++);
+		ft_printf("player:  Steps %d\n", cout++);
 		if (p_map->map_orig[old_y][old_x] == 'E')
 			p_map->map[old_y][old_x] = 'E';
 		else
@@ -33,9 +33,10 @@ void	p_move(int old_x, int old_y, int new_x, int new_y)
 	}
 	if (p_map->map_orig[new_y][new_x] == 'E' && p_map->open_dor == 5)
 	{
-		printf("----WIN----\n");
-		exit_game(0);
+		write(1, "----WIN----\n", 13);
+		exit_game(5);
 	}
+	loude_map();
 	loude_map();
 }
 
@@ -56,7 +57,7 @@ void	pp_move(int keycode)
 
 int	key_hooks(int keycode, t_wind *p_wind)
 {
-	t_map *p_map;
+	t_map	*p_map;
 
 	p_map = map_data();
 	if (p_map->strat_flag)
