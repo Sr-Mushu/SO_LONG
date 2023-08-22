@@ -6,7 +6,7 @@
 /*   By: dagabrie <dagabrie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/10 11:39:26 by dagabrie          #+#    #+#             */
-/*   Updated: 2023/08/22 17:49:25 by dagabrie         ###   ########.fr       */
+/*   Updated: 2023/08/22 18:27:02 by dagabrie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@ void	pp_move(int keycode)
 		p_move(p_map->play_x, p_map->play_y, ++p_map->play_x, p_map->play_y);
 }
 
-int	key_hooks(int keycode, t_wind *p_wind)
+int	key_hooks(int keycode)
 {
 	t_map	*p_map;
 

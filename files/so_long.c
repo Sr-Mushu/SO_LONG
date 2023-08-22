@@ -6,7 +6,7 @@
 /*   By: dagabrie <dagabrie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/22 15:37:52 by dagabrie          #+#    #+#             */
-/*   Updated: 2023/08/22 18:01:04 by dagabrie         ###   ########.fr       */
+/*   Updated: 2023/08/22 18:23:41 by dagabrie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,6 +77,8 @@ int	main(int argc, char **argv)
 	t_wind	*p_wind;
 
 	p_wind = window_data();
+	if (argc != 2)
+		exit_game(30);
 	start_map(argv[1]);
 	start_wind();
 	mlx_key_hook(p_wind->mlx_win, key_hooks, &p_wind);

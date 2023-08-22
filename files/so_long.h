@@ -6,7 +6,7 @@
 /*   By: dagabrie <dagabrie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/27 16:08:24 by dagabrie          #+#    #+#             */
-/*   Updated: 2023/08/22 17:47:23 by dagabrie         ###   ########.fr       */
+/*   Updated: 2023/08/22 18:27:21 by dagabrie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,7 +84,7 @@ void		start_texture(int x, int y);
 void		exit_texture(int x, int y);
 
 // key_hooks.c
-int			key_hooks(int keycode, t_wind *p_wind);
+int			key_hooks(int keycode);
 
 // so_long.c
 void		loude_map(void);

@@ -6,7 +6,7 @@
 /*   By: dagabrie <dagabrie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/27 16:08:30 by dagabrie          #+#    #+#             */
-/*   Updated: 2023/08/22 14:53:39 by dagabrie         ###   ########.fr       */
+/*   Updated: 2023/08/22 18:32:13 by dagabrie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,18 +65,21 @@ void	is_squer(void)
 {
 	t_map	*p_map;
 	int		j;
+	int		len;
 
 	p_map = map_data();
 	p_map->m_length = ft_strlen(p_map->map[0]);
 	j = 0;
 	while (j < p_map->m_height)
 	{
+		len = ft_strlen(p_map->map[j]);
 		if (p_map->map[j][ft_strlen(p_map->map[j]) - 1] != '\n')
 		{
-			if (ft_strlen(p_map->map[j]) + 1 != p_map->m_length)
+			len = ft_strlen(p_map->map[j]) + 1;
+			if (len != p_map->m_length)
 				exit_game(10);
 		}
-		else if (ft_strlen(p_map->map[j]) != p_map->m_length)
+		else if (len != p_map->m_length)
 			exit_game(20);
 		j++;
 	}
