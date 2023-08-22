@@ -6,7 +6,7 @@
 /*   By: dagabrie <dagabrie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: Invalid date        by dagabrie          #+#    #+#             */
-/*   Updated: 2023/08/18 18:11:10 by dagabrie         ###   ########.fr       */
+/*   Updated: 2023/08/21 12:08:04 by dagabrie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,14 +24,20 @@ void	paint_map(char **map, int m_height)
 void	copy_matrix(void)
 {
 	t_map	*p_map;
+	int		i;
+	int		j;
 
 	p_map = map_data();
-	for (int i = 0; i < p_map->m_height; i++)
+	i = 0;
+	while (i < p_map->m_height)
 	{
-		for (int j = 0; j < p_map->m_length; j++)
+		j = 0;
+		while (j < p_map->m_length)
 		{
 			p_map->map[i][j] = p_map->map_orig[i][j];
+			j++;
 		}
+		i++;
 	}
 }
 

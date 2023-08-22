@@ -6,12 +6,13 @@
 #    By: dagabrie <dagabrie@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/07/27 16:38:26 by dagabrie          #+#    #+#              #
-#    Updated: 2023/08/18 17:39:21 by dagabrie         ###   ########.fr        #
+#    Updated: 2023/08/21 15:35:27 by dagabrie         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME	=	so_long
 
+PRINTF_P = ./printf
 LIBFT_P = ./libft
 GNL_P = ./gnl
 
@@ -21,6 +22,7 @@ CFLAGS	=	-Imlx_linux -g -fsanitize=address
 MLX_L	=	-L ../mlx_linux -lmlx -lXext -lX11
 LIBFT_L = $(LIBFT_P)/libft.a
 GNL_L = $(GNL_P)/gnl.a
+PRINTF_L = $(PRINTF_P)/ft_printf.a
 
 SRCS	=	so_long.c	\
 ./utils/t_loude.c		\
@@ -31,7 +33,10 @@ SRCS	=	so_long.c	\
 ./utils/map_vali.c		\
 ./utils/map_status.c
 
-all:	$(LIBFT_L) $(GNL_L) $(NAME)
+all:	$(PRINTF_L) $(LIBFT_L) $(GNL_L) $(NAME)
+
+$(PRINTF_L):
+	make -C $(PRINTF_P)
 
 $(LIBFT_L):
 	make -C $(LIBFT_P)
@@ -41,16 +46,18 @@ $(GNL_L):
 
 $(NAME):
 			make -C ../mlx_linux
-			$(CC) $(CFLAGS) -o $(NAME) $(SRCS) $(MLX_L) $(LIBFT_L) $(GNL_L)
+			$(CC) $(CFLAGS) -o $(NAME) $(SRCS) $(MLX_L) $(PRINTF_L) $(LIBFT_L) $(GNL_L) 
 
 
 clean:
 			make clean -C ../mlx_linux
+			make clean -C $(PRINTF_P)
 			make clean -C $(LIBFT_P)
 			make clean -C $(GNL_P)
 
 fclean:		clean
 			rm -rf $(NAME)
+			make fclean -C $(PRINTF_P)
 			make fclean -C $(LIBFT_P)
 			make fclean -C $(GNL_P)
 

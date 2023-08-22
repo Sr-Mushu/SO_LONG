@@ -6,7 +6,7 @@
 /*   By: dagabrie <dagabrie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/27 16:08:30 by dagabrie          #+#    #+#             */
-/*   Updated: 2023/08/18 18:09:51 by dagabrie         ###   ########.fr       */
+/*   Updated: 2023/08/21 17:10:28 by dagabrie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,11 +16,16 @@ void	fd_is_ber(char *fd_name)
 {
 	int			len;
 	const char	*extin;
+	const char	*name;
 
+	name = fd_name;
 	extin = ".ber";
+	name = ft_strchr(name, '/');
+	//if (4 <= ft_strlen(name))
+		//exit_game(58);
 	len = ft_strlen(fd_name);
 	if (len >= 4 && ft_strncmp(fd_name + len - 4, extin, ft_strlen(extin)) != 0)
-		exit_game(3);
+		exit_game(18);
 }
 
 void	check_path(int x, int y)
@@ -65,6 +70,8 @@ void	valid_chars(void)
 		exit_game(15);
 	if (p_map->flg_exit != 1)
 		exit_game(14);
+	if (p_map->flg_coins < 1)
+		exit_game(17);
 	if (p_map->num_coins != p_map->flg_coins)
 		exit_game(13);
 	copy_matrix();
@@ -86,7 +93,7 @@ void	is_squer(void)
 				exit_game(10);
 		}
 		else if (ft_strlen(p_map->map[j]) != p_map->m_length)
-			exit_game(9);
+			exit_game(20);
 		j++;
 	}
 }
@@ -108,19 +115,13 @@ void	is_valid(void)
 		if (!p_map->map[i + 1])
 			j--;
 		if ((int)ft_strlen(p_map->map[i]) != j)
-			exit_game(9);
+			exit_game(20);
 		while (--k >= 0)
 		{
 			if ((i == 0 || !p_map->map[i + 1]) && p_map->map[i][k] != '1')
-			{
-				printf("1\n");
 				exit_game(11);
-			}
 			if ((k == 0 || k == (j - 2)) && p_map->map[i][k] != '1')
-			{
-				printf("2\n");
 				exit_game(11);
-			}
 		}
 	}
 }

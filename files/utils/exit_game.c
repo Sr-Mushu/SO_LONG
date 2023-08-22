@@ -6,7 +6,7 @@
 /*   By: dagabrie <dagabrie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/10 17:13:34 by dagabrie          #+#    #+#             */
-/*   Updated: 2023/08/18 18:06:47 by dagabrie         ###   ########.fr       */
+/*   Updated: 2023/08/21 16:36:31 by dagabrie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,34 +49,24 @@ int	close_win(int keycode)
 
 void	exit_game(int code)
 {
-	if (code == 16)
-		write(2, "Mapa invalido mais ou sem de uma exit\n", 39);
-	if (code == 15)
-		write(2, "Mapa invalido mais ou sem de um player\n", 40);
-	if (code == 14)
-		write(2, "Mapa invalido o player nao chega a exit\n", 41);
-	if (code == 13)
-		write(2, "Mapa invalido o player nao chega aos coins\n", 44);
-	if (code == 12)
-		write(2, "Mapa invalido outros char no meio\n", 35);
-	if (code == 11)
-		write(2, "Mapa invalido nao esta reodiado por walls\n", 43);
-	if (code == 10)
-		write(2, "Mapa invalido contiudo fora do mapa\n", 37);
-	if (code == 9)
-		write(2, "Mapa invalido nao e retangular\n", 30);
-	if (code == 8)
-		write(2, "Mapa invalido vazio\n", 21);
-	if (code == 4)
-		write(2, "You cose the wind\n", 19);
-	if (code == 3)
-		write(2, "Nome do Mapa nao valido\n", 30);
-	if (code == 1)
-		write(2, "You exit the game\n", 19);
+	char	*error;
+
+	error = ft_itoa(code);
 	if (code <= 7)
 	{
+		write(2, "01x", 4);
+		write (2, error, 2);
+		write (2, "\n", 2);
 		destroy_img();
 		destroy_wind();
 	}
+	else
+	{
+		write (2, "error code:", 12);
+		write (2, "00x", 4);
+		write (2, error, 3);
+		write (2, "\n", 2);
+	}
+	write (2, "Confirm README to see the meaning of the code.\n", 48);
 	exit(code);
 }

@@ -6,7 +6,7 @@
 /*   By: dagabrie <dagabrie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/27 16:08:24 by dagabrie          #+#    #+#             */
-/*   Updated: 2023/08/18 18:11:33 by dagabrie         ###   ########.fr       */
+/*   Updated: 2023/08/21 13:05:30 by dagabrie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 # include "../mlx_linux/mlx.h"
 # include "gnl/gnl.h"
 # include "libft/libft.h"
+# include "printf/ft_printf.h"
 # include <fcntl.h>
 # include <stdio.h>
 # include <unistd.h>

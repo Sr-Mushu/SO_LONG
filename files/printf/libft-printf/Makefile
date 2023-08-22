@@ -6,7 +6,7 @@
 #    By: dagabrie <dagabrie@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/10/21 11:52:57 by dagabrie          #+#    #+#              #
-#    Updated: 2023/08/21 16:05:45 by dagabrie         ###   ########.fr        #
+#    Updated: 2023/01/11 16:55:39 by dagabrie         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,11 +15,8 @@ AR 	= 	ar rcs
 rmO = 	rm *.o
 
 bh 	= 	libft.h
-ft 	= 	ft_isalpha.c ft_isdigit.c ft_isalnum.c ft_isascii.c ft_isprint.c \
-			ft_strcpy.c ft_strlen.c ft_strlcpy.c ft_strlcat.c ft_strchr.c ft_strrchr.c ft_strncmp.c ft_strnstr.c ft_strdup.c ft_strmapi.c ft_strtrim.c ft_strjoin.c \
-			ft_memset.c ft_memcpy.c ft_memmove.c ft_memchr.c ft_memcmp.c\
-			ft_bzero.c ft_toupper.c ft_tolower.c ft_atoi.c ft_calloc.c ft_itoa.c ft_substr.c \
-			ft_putchar_fd.c ft_putnbr_fd.c ft_putstr_fd.c ft_putendl_fd.c ft_split.c ft_striteri.c
+ft 	= 	ft_strlen.c ft_putstr_fd.c
+
 
 NAME = $(bh:%.h=%.a) 
 ft_o = $(ft:%.c=%.o)
