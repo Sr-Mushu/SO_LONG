@@ -6,7 +6,7 @@
 /*   By: dagabrie <dagabrie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/10 11:39:26 by dagabrie          #+#    #+#             */
-/*   Updated: 2023/08/21 17:00:14 by dagabrie         ###   ########.fr       */
+/*   Updated: 2023/08/22 17:49:25 by dagabrie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ void	p_move(int old_x, int old_y, int new_x, int new_y)
 	}
 	if (p_map->map[new_y][new_x] != '1')
 	{
-		ft_printf("player:  Steps %d\n", cout++);
+		ft_printf("player:  Steps %d\n", ++cout);
 		if (p_map->map_orig[old_y][old_x] == 'E')
 			p_map->map[old_y][old_x] = 'E';
 		else
@@ -60,25 +60,18 @@ int	key_hooks(int keycode, t_wind *p_wind)
 	t_map	*p_map;
 
 	p_map = map_data();
-	if (p_map->strat_flag)
+	if (keycode == 32)
+		loude_map();
+	else if (keycode == UP || keycode == DOWN || keycode == LEFT
+		|| keycode == RIGHT)
+		pp_move(keycode);
+	if (keycode == 109)
 	{
-		p_map->strat_flag = 0;
-		if (keycode == 32)
-			loude_map();
-		return (0);
+		paint_map(p_map->map, p_map->m_height);
+		write(1, "\n", 2);
+		paint_map(p_map->map_orig, p_map->m_height);
 	}
-	else
-	{
-		if (keycode == UP || keycode == DOWN || keycode == LEFT
-			|| keycode == RIGHT)
-			pp_move(keycode);
-		if (keycode == 109)
-		{
-			paint_map(p_map->map, p_map->m_height);
-			paint_map(p_map->map_orig, p_map->m_height);
-		}
-		else if (keycode == 65307)
-			exit_game(1);
-		return (0);
-	}
+	else if (keycode == 65307)
+		exit_game(1);
+	return (0);
 }

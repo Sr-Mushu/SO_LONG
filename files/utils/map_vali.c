@@ -6,27 +6,11 @@
 /*   By: dagabrie <dagabrie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/27 16:08:30 by dagabrie          #+#    #+#             */
-/*   Updated: 2023/08/21 17:10:28 by dagabrie         ###   ########.fr       */
+/*   Updated: 2023/08/22 14:53:39 by dagabrie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../so_long.h"
-
-void	fd_is_ber(char *fd_name)
-{
-	int			len;
-	const char	*extin;
-	const char	*name;
-
-	name = fd_name;
-	extin = ".ber";
-	name = ft_strchr(name, '/');
-	//if (4 <= ft_strlen(name))
-		//exit_game(58);
-	len = ft_strlen(fd_name);
-	if (len >= 4 && ft_strncmp(fd_name + len - 4, extin, ft_strlen(extin)) != 0)
-		exit_game(18);
-}
 
 void	check_path(int x, int y)
 {

@@ -3,17 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   ft_memset.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dagabrie <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: dagabrie <dagabrie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/29 15:45:50 by dagabrie          #+#    #+#             */
-/*   Updated: 2021/12/28 15:58:24 by dagabrie         ###   ########.fr       */
+/*   Updated: 2023/08/22 15:51:33 by dagabrie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
 void	*ft_memset(void *string, int character, size_t size)
-{	
+{
 	size_t			count;
 	char			*ponter_str;
 

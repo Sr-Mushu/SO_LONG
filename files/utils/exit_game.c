@@ -6,7 +6,7 @@
 /*   By: dagabrie <dagabrie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/10 17:13:34 by dagabrie          #+#    #+#             */
-/*   Updated: 2023/08/21 16:36:31 by dagabrie         ###   ########.fr       */
+/*   Updated: 2023/08/22 15:47:35 by dagabrie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,6 +54,7 @@ void	exit_game(int code)
 	error = ft_itoa(code);
 	if (code <= 7)
 	{
+		write (2, "code:", 6);
 		write(2, "01x", 4);
 		write (2, error, 2);
 		write (2, "\n", 2);
@@ -67,6 +68,6 @@ void	exit_game(int code)
 		write (2, error, 3);
 		write (2, "\n", 2);
 	}
-	write (2, "Confirm README to see the meaning of the code.\n", 48);
+	write (2, "Confirm README.md to see the meaning of the code.\n", 48);
 	exit(code);
 }

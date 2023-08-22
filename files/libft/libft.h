@@ -6,7 +6,7 @@
 /*   By: dagabrie <dagabrie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/19 10:38:07 by dagabrie          #+#    #+#             */
-/*   Updated: 2023/08/21 16:05:17 by dagabrie         ###   ########.fr       */
+/*   Updated: 2023/08/22 15:51:11 by dagabrie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -145,5 +145,3 @@ char	**ft_split(char const *s, char c);
 void	ft_striteri(char *s, void (*f)(unsigned int, char*));
 
 #endif /*LIBFT*/
-
-

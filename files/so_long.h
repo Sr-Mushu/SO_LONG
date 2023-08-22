@@ -6,7 +6,7 @@
 /*   By: dagabrie <dagabrie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/27 16:08:24 by dagabrie          #+#    #+#             */
-/*   Updated: 2023/08/21 13:05:30 by dagabrie         ###   ########.fr       */
+/*   Updated: 2023/08/22 17:47:23 by dagabrie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,6 @@ typedef struct s_map
 	int		flg_exit;
 	int		open_dor;
 	int		exit_flag;
-	int		strat_flag;
 }			t_map;
 
 typedef struct s_wind
@@ -73,10 +72,12 @@ typedef struct s_wind
 t_map		*map_data(void);
 t_wind		*window_data(void);
 
-// t_loude.c
+// t_loude_01.c
 void		loude_texture(void);
 void		flor_texture(int x, int y);
 void		wall_texture(int x, int y);
+
+// t_loude_02.c
 void		coin_texture(int x, int y);
 void		play_texture(int x, int y);
 void		start_texture(int x, int y);
@@ -103,7 +104,10 @@ void		create_windo(int x, int y);
 void		map_valid(void);
 void		fd_is_ber(char *fd_name);
 
-// map_status
+// name_vali.c
+void		fd_is_vali(char *fd_name);
+
+// map_status.c
 void		status_map(void);
 
 #endif
