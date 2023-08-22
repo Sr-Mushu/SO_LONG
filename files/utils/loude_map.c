@@ -6,7 +6,7 @@
 /*   By: dagabrie <dagabrie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/10 14:49:17 by dagabrie          #+#    #+#             */
-/*   Updated: 2023/08/21 12:23:12 by dagabrie         ###   ########.fr       */
+/*   Updated: 2023/08/22 18:47:57 by dagabrie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,7 +73,7 @@ void	map_to_array(int fd, int *m_height, char ***map)
 	int		j;
 	int		max_lines;
 
-	max_lines = 300;
+	max_lines = 1000;
 	*m_height = 0;
 	*map = (char **)malloc(max_lines * sizeof(char *));
 	j = 0;

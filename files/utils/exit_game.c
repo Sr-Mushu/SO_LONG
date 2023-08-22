@@ -6,7 +6,7 @@
 /*   By: dagabrie <dagabrie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/10 17:13:34 by dagabrie          #+#    #+#             */
-/*   Updated: 2023/08/22 15:47:35 by dagabrie         ###   ########.fr       */
+/*   Updated: 2023/08/22 19:13:18 by dagabrie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,11 +63,11 @@ void	exit_game(int code)
 	}
 	else
 	{
-		write (2, "error code:", 12);
+		write (2, "Error\n code:", 13);
 		write (2, "00x", 4);
 		write (2, error, 3);
 		write (2, "\n", 2);
 	}
-	write (2, "Confirm README.md to see the meaning of the code.\n", 48);
+	write (2, "Confirm README.md to see the meaning of the code.\n", 51);
 	exit(code);
 }

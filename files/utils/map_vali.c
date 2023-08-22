@@ -6,7 +6,7 @@
 /*   By: dagabrie <dagabrie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/27 16:08:30 by dagabrie          #+#    #+#             */
-/*   Updated: 2023/08/22 18:32:13 by dagabrie         ###   ########.fr       */
+/*   Updated: 2023/08/22 19:08:39 by dagabrie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,7 +80,7 @@ void	is_squer(void)
 				exit_game(10);
 		}
 		else if (len != p_map->m_length)
-			exit_game(20);
+			exit_game(19);
 		j++;
 	}
 }

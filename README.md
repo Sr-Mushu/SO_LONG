@@ -30,6 +30,7 @@ P for the player’s starting position.<br>
 ## Erro: list
 01x means that it was executed successfully.<br>
 00x:<br>
+Erro: 30 : Argumantos a mais<br>
 Erro: 25 : Invalid name map<br>
 Erro: 24 : Invalid name map, fill do not exist<br>
 Erro: 20 : Invalid map, empty or empty line<br>
