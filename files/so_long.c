@@ -6,7 +6,7 @@
 /*   By: dagabrie <dagabrie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/22 15:37:52 by dagabrie          #+#    #+#             */
-/*   Updated: 2023/08/22 18:23:41 by dagabrie         ###   ########.fr       */
+/*   Updated: 2023/08/23 12:01:21 by dagabrie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,6 @@ void	start_map(char *fd)
 	fd_is_vali(fd);
 	map_to_array(open(fd, O_RDWR), &p_map->m_height, &p_map->map);
 	map_to_array(open(fd, O_RDWR), &p_map->m_height, &p_map->map_orig);
-	status_map();
 	map_valid();
 }
 
