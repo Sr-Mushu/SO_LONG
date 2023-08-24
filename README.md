@@ -21,7 +21,7 @@ The map can be composed of only these 5 characters:<br>
  `C` for a collectible,<br>
  `E` for a map exit,<br>
  `P` for the player’s starting position.<br>
-
+<br>
 > [!IMPORTANT]
 > The map must and the last line in `null` .<br>
 
