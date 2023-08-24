@@ -22,8 +22,9 @@ The map can be composed of only these 5 characters:<br>
 `E` for a map exit,<br>
 `P` for the player’s starting position.<br>
 <br>
+> [!IMPORTANT]
+> The map must and the last line in `null` .<br>
 • The map must be rectangular.<br>
-• The map must and the last line in `null`.<br>
 • The map must be closed/surrounded by walls. If it’s not, the program must return an error.<br>
 • You have to check if there’s a valid path in the map.<br>
 • You must be able to parse any kind of map, as long as it respects the above rules.<br>
