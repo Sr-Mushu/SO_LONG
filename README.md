@@ -27,6 +27,9 @@ P for the player’s starting position.<br>
 • You must be able to parse any kind of map, as long as it respects the above rules.<br>
 <br>
 
+## How to use
+in the folder 'SO_LONG/files' execute the command 'make' and lete da magic bigine.
+
 ## Erro: list
 01x means that it was executed successfully.<br>
 00x:<br>
