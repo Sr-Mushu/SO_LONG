@@ -28,7 +28,10 @@ P for the player’s starting position.<br>
 <br>
 
 ## How to use
-in the folder ´SO_LONG/files´ execute the command ´make´ and lete da magic bigine.
+in the folder `SO_LONG/files` execute the command `make` and lete da magic bigine.
+and rune `./so_long ../maps/level_1.ber` .
+in the folder `SO_LONG/maps` you cand create a new level if you want.
+
 
 ## Erro: list
 01x means that it was executed successfully.<br>
