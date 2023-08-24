@@ -13,7 +13,7 @@ Version: 2.3<br>
 ## Map rules
 
 > [!IMPORTANT]
-> rules for creating a map.<br>
+> Rules for creating a map.<br>
 <br>
 The map can be composed of only these 5 characters:<br>
 `0` for an empty space,<br>
@@ -30,10 +30,10 @@ The map can be composed of only these 5 characters:<br>
 <br>
 
 ## How to use
-in the folder `SO_LONG/files` execute the command `make` and lete da magic bigine.<br>
-and rune ```./so_long ../maps/level_1.ber``` .<br>
-in the folder `SO_LONG/maps` you cand create a new level if you want or edit.<br>
-
+> [!IMPORTANT]
+> In the folder `SO_LONG/files` execute the command `make` and lete da magic bigine.<br>
+> In the folder `SO_LONG/maps` you cand create a new level if you want or edit.<br>
+> and rune ```./so_long ../maps/level_1.ber``` .<br>
 
 ## Erro: list
 
