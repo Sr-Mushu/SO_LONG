@@ -23,7 +23,7 @@ The map can be composed of only these 5 characters:<br>
 `P` for the player’s starting position.<br>
 
 > [!IMPORTANT]
-> The map must and the last line in `null` .<br>
+• The map must and the last line in `null` .<br>
 • The map must be rectangular.<br>
 • The map must be closed/surrounded by walls. If it’s not, the program must return an error.<br>
 • You have to check if there’s a valid path in the map.<br>
@@ -31,10 +31,10 @@ The map can be composed of only these 5 characters:<br>
 <br>
 
 ## How to use
-> [!IMPORTANT]
-> In the folder `SO_LONG/files` execute the command `make` and lete da magic bigine.<br>
-> In the folder `SO_LONG/maps` you cand create a new level if you want or edit.<br>
-> and rune ```./so_long ../maps/level_1.ber``` .<br>
+
+In the folder `SO_LONG/files` execute the command `make` and lete da magic bigine.<br>
+In the folder `SO_LONG/maps` you cand create a new level if you want or edit.<br>
+and rune ```./so_long ../maps/level_1.ber``` .<br>
 
 ## Erro: list
 
