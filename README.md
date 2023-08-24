@@ -30,11 +30,18 @@ The map can be composed of only these 5 characters:<br>
 ## How to use
 in the folder `SO_LONG/files` execute the command `make` and lete da magic bigine.<br>
 and rune ```./so_long ../maps/level_1.ber``` .<br>
-in the folder `SO_LONG/maps` you cand create a new level if you want.<br>
+in the folder `SO_LONG/maps` you cand create a new level if you want or edit.<br>
 
 
 ## Erro: list
-01x means that it was executed successfully.<br>
+
+> [!NOTE]
+> 01x means that it was executed successfully.<br>
+> 01x:<br>
+> Erro: 5 : You win the game!!<br>
+> Erro: 4 : You chose the wind<br>
+> Erro: 1 : You exited the game<br>
+
 00x:<br>
 Erro: 30 : Argumantos a mais<br>
 Erro: 25 : Invalid name map<br>
@@ -50,7 +57,4 @@ Erro: 13 : Invalid map, player doesn't reach the coins<br>
 Erro: 12 : Invalid map, other characters in the middle<br>
 Erro: 11 : Invalid map, not surrounded by walls<br>
 Erro: 10 : Invalid map, content outside the map<br>
-01x:<br>
-Erro: 5 : You win the game!!<br>
-Erro: 4 : You chose the wind<br>
-Erro: 1 : You exited the game<br>
+
