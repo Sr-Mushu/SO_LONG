@@ -28,7 +28,7 @@ P for the player’s starting position.<br>
 <br>
 
 ## How to use
-in the folder 'SO_LONG/files' execute the command 'make' and lete da magic bigine.
+in the folder ´SO_LONG/files´ execute the command ´make´ and lete da magic bigine.
 
 ## Erro: list
 01x means that it was executed successfully.<br>
