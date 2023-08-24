@@ -11,7 +11,9 @@ Version: 2.3<br>
 ##
 
 ## Map rules
-rules for creating a map.<br>
+
+> [!IMPORTANT]
+> rules for creating a map.<br>
 <br>
 The map can be composed of only these 5 characters:<br>
 `0` for an empty space,<br>
@@ -41,20 +43,20 @@ in the folder `SO_LONG/maps` you cand create a new level if you want or edit.<br
 > Erro: 5 : You win the game!!<br>
 > Erro: 4 : You chose the wind<br>
 > Erro: 1 : You exited the game<br>
-
-00x:<br>
-Erro: 30 : Argumantos a mais<br>
-Erro: 25 : Invalid name map<br>
-Erro: 24 : Invalid name map, fill do not exist<br>
-Erro: 20 : Invalid map, empty or empty line<br>
-Erro: 19 : Invalid map, not rectangular<br>
-Erro: 18 : Invalid map, name missing ".ber"<br>
-Erro: 17 : Invalid map, no coins found<br>
-Erro: 16 : Invalid map, too many or missing exits<br>
-Erro: 15 : Invalid map, too many or missing players<br>
-Erro: 14 : Invalid map, player doesn't reach the exit<br>
-Erro: 13 : Invalid map, player doesn't reach the coins<br>
-Erro: 12 : Invalid map, other characters in the middle<br>
-Erro: 11 : Invalid map, not surrounded by walls<br>
-Erro: 10 : Invalid map, content outside the map<br>
+> [!WARNING]
+> 00x:<br>
+> Erro: 30 : Argumantos a mais<br>
+> Erro: 25 : Invalid name map<br>
+> Erro: 24 : Invalid name map, fill do not exist<br>
+> Erro: 20 : Invalid map, empty or empty line<br>
+> Erro: 19 : Invalid map, not rectangular<br>
+> Erro: 18 : Invalid map, name missing ".ber"<br>
+> Erro: 17 : Invalid map, no coins found<br>
+> Erro: 16 : Invalid map, too many or missing exits<br>
+> Erro: 15 : Invalid map, too many or missing players<br>
+> Erro: 14 : Invalid map, player doesn't reach the exit<br>
+> Erro: 13 : Invalid map, player doesn't reach the coins<br>
+> Erro: 12 : Invalid map, other characters in the middle<br>
+> Erro: 11 : Invalid map, not surrounded by walls<br>
+> Erro: 10 : Invalid map, content outside the map<br>
 
