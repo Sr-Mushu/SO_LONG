@@ -43,6 +43,7 @@ in the folder `SO_LONG/maps` you cand create a new level if you want or edit.<br
 > Erro: 5 : You win the game!!<br>
 > Erro: 4 : You chose the wind<br>
 > Erro: 1 : You exited the game<br>
+
 > [!WARNING]
 > 00x:<br>
 > Erro: 30 : Argumantos a mais<br>
