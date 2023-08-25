@@ -6,7 +6,7 @@
 /*   By: dagabrie <dagabrie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/22 14:53:10 by dagabrie          #+#    #+#             */
-/*   Updated: 2023/08/22 17:03:41 by dagabrie         ###   ########.fr       */
+/*   Updated: 2023/08/25 19:30:55 by dagabrie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,8 +41,10 @@ void	fd_is_ber(char *fd_name)
 
 	extin = ".ber";
 	len = ft_strlen(fd_name);
+	if (len <= 4)
+		exit_game(25);
 	if (len > 4 && ft_strncmp(fd_name + len - 4, extin, ft_strlen(extin)) != 0)
-		exit_game(14);
+		exit_game(25);
 }
 
 void	fd_is_vali(char *fd_name)
