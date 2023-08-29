@@ -6,7 +6,7 @@
 #    By: dagabrie <dagabrie@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/07/27 16:38:26 by dagabrie          #+#    #+#              #
-#    Updated: 2023/08/24 14:54:14 by dagabrie         ###   ########.fr        #
+#    Updated: 2023/08/26 18:12:23 by dagabrie         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,7 +17,8 @@ LIBFT_P = ./libft
 GNL_P = ./gnl
 
 CC		=	cc
-CFLAGS	=	-Imlx_linux -g -fsanitize=address -Wall -Werror -Wextra
+#CFLAGS	=	-Imlx_linux -g -fsanitize=address -Wall -Werror -Wextra
+CFLAGS	=	-Wall -Werror -Wextra
 MLX_L	=	-L ../mlx_linux -lmlx -lXext -lX11
 
 LIBFT_L = $(LIBFT_P)/libft.a

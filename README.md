@@ -46,7 +46,7 @@ and rune ```./so_long ../maps/level_1.ber``` .<br>
 
 > [!WARNING]
 > 00x:<br>
-> Erro: 30 : Argumantos a mais<br>
+> Erro: 30 : too many arguments<br>
 > Erro: 25 : Invalid name map<br>
 > Erro: 24 : Invalid name map, fill do not exist<br>
 > Erro: 20 : Invalid map, empty or empty line<br>
