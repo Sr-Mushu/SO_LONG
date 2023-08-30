@@ -39,6 +39,7 @@ and rune ```./so_long ../maps/level_1.ber``` .<br>
 
 > [!NOTE]
 > 01x means that it was executed successfully.<br>
+> 00x means that it was executed unsuccessfully<br>
 > 01x:<br>
 > Erro: 5 : You win the game!!<br>
 > Erro: 4 : You chose the wind<br>
